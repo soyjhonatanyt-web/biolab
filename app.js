@@ -562,7 +562,11 @@
     const isPositive = index > 0;
     $("#biuret-liquid").style.background = labModels.biuret.colors[index];
     $("#biuret-state").textContent = isPositive ? `Positivo · ${level}` : "Negativo";
-    const explanation = base > 0 && !isPositive ? "La cantidad o el tiempo fueron insuficientes para observar el violeta." : "El tono violeta evidencia enlaces peptídicos y se compara con el control positivo.";
+    const explanation = isPositive
+      ? "el tono violeta evidencia enlaces peptídicos y se compara con el control positivo."
+      : base > 0
+        ? "no se observó violeta: revisa la proporción de muestra, la cantidad de reactivo y el tiempo antes de concluir."
+        : "el reactivo permaneció azul, como el control negativo; no se detectaron proteínas en estas condiciones.";
     renderLabResult("biuret", isPositive, isPositive ? "Cambio a violeta: hay proteínas" : "No se detectaron proteínas", `En ${label}, ${explanation} ${predictionFeedback(simulator, isPositive)}`);
     return { sample: sampleKey, label, positive: isPositive, level, value: Math.round(value * 100), conditions: `${Math.round(concentration * 100)} % · ${$("#biuret-reagent").value} gotas · ${$("#biuret-time").value} min`, evidence: `Color ${level}`, conclusion: isPositive ? "Proteínas presentes" : "No detectadas en estas condiciones" };
   }
