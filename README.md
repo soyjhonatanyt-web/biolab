@@ -4,16 +4,16 @@ Aplicación educativa estática en español. No necesita cuentas, contraseñas, 
 
 ## 1. Publicar en GitHub Pages
 
-1. Crea un repositorio de GitHub y sube el contenido de este paquete **con su estructura original**: `dist/`, `.github/`, `google-apps-script/` y este documento. Asegúrate de incluir `.github/workflows/pages.yml`, que puede aparecer como carpeta oculta.
-2. Usa `main` como rama principal. Si utilizas otra, cambia `branches: [main]` en el archivo del flujo.
-3. En el repositorio, abre **Settings → Pages → Build and deployment → Source → GitHub Actions**.
-4. En **Actions**, ejecuta «Publicar BioLab en GitHub Pages» o realiza un cambio en `main`. Al finalizar, Pages mostrará la URL pública.
+1. Sitúa `index.html`, los estilos, scripts, el manifiesto y `sw.js` directamente en la raíz del repositorio. Conserva también `.nojekyll`, la guía y el ejemplo opcional `google-apps-script/`.
+2. Usa `main` como rama principal.
+3. En **Settings → Pages → Build and deployment**, selecciona **Source → Deploy from a branch**, **Branch → main** y **/(root)**.
+4. Guarda la configuración. Cada cambio publicado en `main` actualiza la web mediante el flujo interno «pages build and deployment» de GitHub. Comprueba que finalice correctamente en **Actions**.
 
-El flujo publica únicamente `dist/`. Los archivos de Apps Script no se ejecutan en GitHub. Los enlaces, estilos y scripts de BioLab son relativos: también funcionan en una dirección del tipo `https://usuario.github.io/biolab/`. No hay compilación ni framework. Consulta la [guía oficial de flujos para Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+Pages sirve la aplicación estática desde la raíz; `.nojekyll` evita procesarla como un sitio Jekyll. Los archivos auxiliares no contienen resultados de estudiantes ni credenciales, y Apps Script no se ejecuta en GitHub. Los enlaces, estilos y scripts son relativos y funcionan bajo `/biolab/`. No hay compilación ni framework. Consulta la [guía oficial de publicación desde una rama](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
 ## 2. Utilizar la evaluación sin Google Sheets
 
-En `dist/config.js` deja:
+En `config.js` deja:
 
 ```js
 const GOOGLE_SCRIPT_URL = "";
@@ -34,7 +34,7 @@ El intento se conserva al recargar. Esto es una restricción sencilla por navega
    P1–P10 son las preguntas 1–10 del examen y almacenan letras A, B, C o D. **No son las etiquetas curriculares del método científico.** Nota es un número sobre 10; Porcentaje es de 0 a 100. Fecha incluye hora. La cantidad de aciertos también se envía; en este examen coincide con la nota porque cada pregunta vale un punto.
 4. En Apps Script selecciona **Implementar → Nueva implementación → Aplicación web**. Ejecutar como: **tú (propietario)**. Acceso: **Cualquier persona**, incluida una persona sin cuenta de Google. Si tu institución no permite acceso anónimo, habrá que usar una cuenta que sí lo permita; no añadas autenticación a BioLab.
 5. Autoriza el acceso del script a tu hoja y copia la URL de la aplicación web terminada en **`/exec`**, no `/dev`.
-6. En `dist/config.js`, edita una sola línea:
+6. En `config.js`, edita una sola línea:
 
    ```js
    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/TU_IMPLEMENTACION/exec";
@@ -70,9 +70,9 @@ Sin conexión o con un problema de envío, la nota sigue disponible y el resulta
 
 ## 4. Funcionamiento educativo offline
 
-Todos los modelos y recursos educativos están incluidos en `dist/`; no dependen de imágenes, fuentes o librerías externas. Para usar la versión de Pages sin conexión, visita primero BioLab con conexión y deja que cargue sus archivos. El servicio de caché ofrece después los módulos y la evaluación local sin red. El registro en Sheets requiere conexión.
+Todos los modelos y recursos educativos están incluidos junto a `index.html`; no dependen de imágenes, fuentes o librerías externas. Para usar la versión de Pages sin conexión, visita primero BioLab con conexión y deja que cargue sus archivos. El servicio de caché ofrece después los módulos y la evaluación local sin red. El registro en Sheets requiere conexión.
 
-Para revisar el paquete desde una computadora sin publicar, sirve la carpeta `dist/` con cualquier servidor estático local. Si ya tienes Node.js, el comando `node preview-server.mjs 4175` abre `http://127.0.0.1:4175/`. Abrir `index.html` como archivo no garantiza la caché offline ni las mismas funciones que localhost/HTTPS.
+Para revisar el paquete desde una computadora sin publicar, sirve la raíz del proyecto con cualquier servidor estático local. Si ya tienes Node.js, el comando `node preview-server.mjs 4175` abre `http://127.0.0.1:4175/`. Abrir `index.html` como archivo no garantiza la caché offline ni las mismas funciones que localhost/HTTPS.
 
 ## 5. Alcance educativo
 
@@ -84,6 +84,6 @@ Contenido científico de referencia: OpenStax Biology 2e · [Carbohidratos](http
 
 ## Estado de esta entrega
 
-Entrega estática para el repositorio [soyjhonatanyt-web/biolab](https://github.com/soyjhonatanyt-web/biolab), en la rama `main`. El flujo de GitHub Actions publica `dist/` cuando GitHub Pages está configurado con esa fuente; su estado se consulta en la pestaña Actions. La URL de registro sigue vacía y Apps Script no está desplegado ni conectado. Las pruebas locales no sustituyen una prueba real de guardado en tu hoja una vez que exista la URL.
+Entrega estática para el repositorio [soyjhonatanyt-web/biolab](https://github.com/soyjhonatanyt-web/biolab), en la rama `main`. GitHub Pages publica directamente la raíz de `main` con «Deploy from a branch»; su estado se consulta en la pestaña Actions. La URL de registro sigue vacía y Apps Script no está desplegado ni conectado. Las pruebas locales no sustituyen una prueba real de guardado en tu hoja una vez que exista la URL.
 
 El constructor y las tres pruebas químicas son funcionales. La investigación de muestra X utiliza esas pruebas y sus cuadernos. El simulador independiente de digestión/actividad enzimática y la mesa unificada de investigación todavía no están implementados en este prototipo; esta revisión conserva el resto del recurso sin añadir esas simulaciones.
