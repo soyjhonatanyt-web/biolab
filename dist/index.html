@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ee">
+  <meta name="description" content="Laboratorio interactivo de biomoléculas para secundaria: carbohidratos, lípidos y proteínas.">
+  <title>BioLab · Laboratorio de biomoléculas</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css?v=aprende-1">
+  <link rel="stylesheet" href="learn.css?v=aprende-1">
+  <link rel="stylesheet" href="editorial.css?v=scope-3">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <div class="brand" aria-label="BioLab">
+        <span class="brand-mark" aria-hidden="true">B</span>
+        <span><strong>BioLab</strong><small>Biomoléculas</small></span>
+      </div>
+
+      <nav class="side-nav">
+        <button class="nav-link active" data-view="inicio" aria-current="page"><span aria-hidden="true">⌂</span> Inicio</button>
+        <button class="nav-link" data-view="aprende"><span aria-hidden="true">◫</span> Aprende</button>
+        <button class="nav-link" data-view="constructor"><span aria-hidden="true">◇</span> Construye</button>
+        <button class="nav-link" data-view="metodo"><span aria-hidden="true">P</span> Método P1–P5</button>
+        <div class="nav-label">Simulaciones</div>
+        <button class="nav-link" data-view="benedict"><span class="nav-dot benedict-dot" aria-hidden="true"></span> Benedict</button>
+        <button class="nav-link" data-view="sudan"><span class="nav-dot sudan-dot" aria-hidden="true"></span> Sudan III</button>
+        <button class="nav-link" data-view="biuret"><span class="nav-dot biuret-dot" aria-hidden="true"></span> Biuret</button>
+        <button class="nav-link" data-view="evaluacion"><span aria-hidden="true">✓</span> Evaluación</button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <p><span class="status-light" aria-hidden="true"></span> Disponible sin conexión</p>
+        <button class="support-toggle" id="support-toggle" type="button" aria-pressed="false" aria-label="Modo apoyo" title="Modo apoyo: texto y pasos ampliados">
+          <span aria-hidden="true">Aa</span>
+          <span><strong>Modo apoyo</strong><small>Texto y pasos ampliados</small></span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Abrir navegación" aria-expanded="false">☰</button>
+        <div>
+          <span class="eyebrow">Aula interactiva · Secundaria</span>
+          <h1 id="page-title">Explora las biomoléculas</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="sound-button" type="button" aria-label="Escuchar esta pantalla" title="Escuchar esta pantalla">♪</button>
+          <span class="offline-badge" id="connection-badge">● En línea</span>
+        </div>
+      </header>
+
+      <main id="main-content" tabindex="-1">
+        <section class="view active" id="view-inicio" data-title="Explora las biomoléculas">
+          <div class="welcome-grid">
+            <div class="welcome-copy">
+              <span class="section-kicker">LABORATORIO VIRTUAL</span>
+              <h2>¿Qué moléculas hay<br>en lo que comemos?</h2>
+              <p>Investiga muestras, aplica tres reactivos y usa evidencias para identificar carbohidratos, lípidos y proteínas.</p>
+              <div class="welcome-actions">
+                <button class="primary-button" data-go="constructor">Abrir Constructor</button>
+                <button class="text-button" data-go="metodo">Ver P1–P5</button>
+              </div>
+              <div class="objective-strip">
+                <span>Objetivo de aprendizaje</span>
+                <strong>Diferenciar biomoléculas por su función y por la evidencia experimental.</strong>
+              </div>
+            </div>
+            <div class="molecule-stage" aria-label="Mapa visual de las tres biomoléculas">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <button class="molecule-node carb-node" data-go="benedict"><span>C</span><strong>Carbohidratos</strong><small>Energía inmediata</small></button>
+              <button class="molecule-node lipid-node" data-go="sudan"><span>L</span><strong>Lípidos</strong><small>Reserva y membranas</small></button>
+              <button class="molecule-node protein-node" data-go="biuret"><span>P</span><strong>Proteínas</strong><small>Estructura y función</small></button>
+              <div class="stage-core"><span>Bio</span><strong>LAB</strong></div>
+            </div>
+          </div>
+
+          <div class="experience-path" aria-label="Ruta de BioLab"><button class="active" data-go="constructor"><span>01</span><strong>CONSTRUYE</strong><small>Estructura molecular</small></button><div></div><button disabled><span>02</span><strong>TRANSFORMA</strong><small>Digestión enzimática</small></button><div></div><button disabled><span>03</span><strong>INVESTIGA</strong><small>Muestra desconocida</small></button><div></div><button data-go="evaluacion"><span>04</span><strong>DEMUESTRA</strong><small>Evaluación final</small></button></div>
+
+          <div class="dashboard-heading">
+            <div><span class="section-kicker">RUTA SUGERIDA</span><h3>Tres pruebas, tres evidencias</h3></div>
+            <span class="free-nav-note">Puedes entrar en cualquier módulo</span>
+          </div>
+          <div class="lab-cards">
+            <article class="lab-card carb-card">
+              <div class="lab-card-top"><span class="lab-number">01</span><span class="lab-status">LISTO</span></div>
+              <div class="mini-tube blue-liquid" aria-hidden="true"><span></span></div>
+              <p>CARBOHIDRATOS</p><h3>Prueba de Benedict</h3>
+              <span>Detecta azúcares reductores con calor.</span>
+              <button data-go="benedict">Abrir laboratorio</button>
+            </article>
+            <article class="lab-card lipid-card">
+              <div class="lab-card-top"><span class="lab-number">02</span><span class="lab-status">LISTO</span></div>
+              <div class="mini-tube red-liquid" aria-hidden="true"><span></span></div>
+              <p>LÍPIDOS</p><h3>Prueba de Sudan III</h3>
+              <span>Marca las grasas con una capa rojiza.</span>
+              <button data-go="sudan">Abrir laboratorio</button>
+            </article>
+            <article class="lab-card protein-card">
+              <div class="lab-card-top"><span class="lab-number">03</span><span class="lab-status">LISTO</span></div>
+              <div class="mini-tube purple-liquid" aria-hidden="true"><span></span></div>
+              <p>PROTEÍNAS</p><h3>Prueba de Biuret</h3>
+              <span>Revela enlaces peptídicos en violeta.</span>
+              <button data-go="biuret">Abrir laboratorio</button>
+            </article>
+          </div>
+          <section class="mystery-challenge" aria-labelledby="mystery-title">
+            <div class="mystery-intro"><span class="section-kicker">RETO INTEGRADO</span><h3 id="mystery-title">Identifica la muestra X</h3><p>La misma muestra está disponible en los tres laboratorios. Ejecuta las pruebas con “Muestra X”, compara las evidencias y decide qué alimento es.</p></div>
+            <div class="mystery-progress" aria-label="Progreso del reto"><span data-mystery-lab="benedict"><i></i>Benedict</span><span data-mystery-lab="sudan"><i></i>Sudan III</span><span data-mystery-lab="biuret"><i></i>Biuret</span></div>
+            <div class="mystery-guess"><label for="mystery-answer">Tu conclusión</label><div><select id="mystery-answer"><option value="">Selecciona una muestra</option><option value="honey">Miel diluida</option><option value="milk">Leche</option><option value="oil">Aceite vegetal</option><option value="egg">Clara de huevo</option><option value="peanut">Crema de maní</option></select><button id="check-mystery" disabled>Comprobar</button></div><p id="mystery-feedback" aria-live="polite">Completa las tres pruebas para desbloquear la conclusión.</p></div>
+          </section>
+        </section>
+
+        <section class="view learn-view" id="view-aprende" data-title="Aprende · Biomoléculas">
+          <div id="learn-app"></div>
+        </section>
+
+        <section class="view builder-view" id="view-constructor" data-title="Constructor de biomoléculas">
+          <div class="builder-header">
+            <div><span class="section-kicker">CONSTRUYE · SIMULACIÓN 01</span><h2>Constructor de biomoléculas</h2><p>Manipula unidades pequeñas, forma enlaces y observa cómo el agua sale o entra durante la reacción.</p></div>
+            <div class="reaction-legend"><span><i class="water-icon">H₂O</i> Condensación: sale agua</span><span><i class="water-icon in">H₂O</i> Hidrólisis: entra agua</span></div>
+          </div>
+
+          <div class="builder-tabs" role="tablist" aria-label="Tipo de biomolécula">
+            <button class="active" role="tab" aria-selected="true" data-builder-mode="carbohydrate"><span class="builder-tab-icon carb-piece">G</span><span><strong>Carbohidratos</strong><small>Monosacáridos</small></span></button>
+            <button role="tab" aria-selected="false" data-builder-mode="protein"><span class="builder-tab-icon protein-piece">AA</span><span><strong>Proteínas</strong><small>Aminoácidos</small></span></button>
+            <button role="tab" aria-selected="false" data-builder-mode="lipid"><span class="builder-tab-icon lipid-piece">L</span><span><strong>Lípidos</strong><small>Glicerol + ácidos grasos</small></span></button>
+          </div>
+
+          <div class="builder-shell">
+            <aside class="parts-dock" aria-label="Piezas disponibles">
+              <div class="dock-heading"><span>PIEZAS</span><small>Arrastra o toca para añadir</small></div>
+              <div id="builder-palette" class="builder-palette"></div>
+              <div class="dock-tip"><span aria-hidden="true">↕</span><p>Las piezas añadidas también se pueden mover dentro de la mesa.</p></div>
+            </aside>
+
+            <div class="build-workspace">
+              <div class="workspace-bar"><div><span>MESA DE CONSTRUCCIÓN</span><strong id="builder-molecule-name">Molécula sin formar</strong></div><button id="builder-reset" type="button">Reiniciar mesa</button></div>
+              <div id="builder-canvas" class="builder-canvas" aria-label="Zona interactiva para construir moléculas" tabindex="0">
+                <div class="canvas-grid" aria-hidden="true"></div>
+                <div id="builder-hint" class="builder-hint"><span>＋</span><strong>Añade dos monosacáridos</strong><small>Arrastra piezas aquí o tócalas en el panel</small></div>
+                <div id="builder-bonds" class="builder-bonds" aria-hidden="true"></div>
+                <div id="builder-pieces" class="builder-pieces"></div>
+                <div id="water-events" class="water-events" aria-live="polite"></div>
+              </div>
+              <div class="reaction-controls">
+                <button id="condense-button" class="reaction-button condense" disabled><span>− H₂O</span><strong>Condensar</strong><small>Formar enlaces</small></button>
+                <div class="reaction-state"><span id="reaction-arrow">UNIDADES → MOLÉCULA</span><i></i></div>
+                <button id="hydrolyze-button" class="reaction-button hydrolyze" disabled><span>＋ H₂O</span><strong>Hidrólisis</strong><small>Romper enlaces</small></button>
+              </div>
+            </div>
+
+            <aside class="build-inspector">
+              <div class="mission-card"><span>MISIÓN ACTUAL</span><h3 id="builder-mission">Forma un disacárido</h3><p id="builder-mission-copy">Une al menos dos monosacáridos mediante una reacción de condensación.</p><div class="mission-progress"><i id="mission-progress"></i></div><small id="mission-status">0 de 2 unidades</small></div>
+              <div class="molecule-stats"><div><span id="stat-units">0</span><small>unidades</small></div><div><span id="stat-bonds">0</span><small>enlaces</small></div><div><span id="stat-water">0</span><small>H₂O</small></div></div>
+              <div class="explanation-panel" id="builder-explanation" aria-live="polite"><span>¿QUÉ ESTÁ OCURRIENDO?</span><h3>Comienza con las unidades básicas</h3><p>Las biomoléculas grandes se forman a partir de piezas más pequeñas.</p></div>
+              <div class="formula-panel"><span>MODELO DE REACCIÓN</span><strong id="builder-formula">monosacárido + monosacárido</strong><i></i><b id="builder-product">disacárido + H₂O</b></div>
+            </aside>
+          </div>
+
+          <div class="builder-concept"><div><span>CONDENSACIÓN</span><p>Se forma un enlace y se libera una molécula de agua.</p></div><div><span>HIDRÓLISIS</span><p>Entra agua para romper el enlace y separar las unidades.</p></div><strong>El modelo simplifica la forma real de las moléculas para hacer visible la reacción.</strong></div>
+        </section>
+
+        <section class="view" id="view-metodo" data-title="Método científico P1–P5">
+          <div class="content-intro"><span class="section-kicker">PENSAR COMO CIENTÍFICOS</span><h2>Un método en cinco acciones</h2><p>La respuesta no empieza con el color: empieza con una pregunta y termina con una conclusión basada en evidencias.</p></div>
+          <div class="method-path" aria-label="Etapas del método científico P1 a P5">
+            <article><span>P1</span><div><p>OBSERVAR</p><h3>Reconoce la muestra</h3><p>Describe color, textura y origen sin adivinar todavía.</p><em>“La muestra es líquida y blanca.”</em></div></article>
+            <article><span>P2</span><div><p>PREGUNTAR</p><h3>Formula una hipótesis</h3><p>Predice qué biomolécula podría estar presente y por qué.</p><em>“Si contiene proteína, Biuret cambiará a violeta.”</em></div></article>
+            <article><span>P3</span><div><p>EXPERIMENTAR</p><h3>Controla las variables</h3><p>Elige el reactivo, mantén condiciones comparables y registra.</p><em>“Usaré igual volumen en cada muestra.”</em></div></article>
+            <article><span>P4</span><div><p>INTERPRETAR</p><h3>Lee la evidencia</h3><p>Compara el resultado con la escala de referencia.</p><em>“El violeta indica enlaces peptídicos.”</em></div></article>
+            <article><span>P5</span><div><p>CONCLUIR</p><h3>Responde y comunica</h3><p>Acepta o rechaza la hipótesis; menciona la evidencia.</p><em>“La muestra contiene proteínas porque…”</em></div></article>
+          </div>
+          <div class="adaptation-note"><span aria-hidden="true">◎</span><div><strong>Adecuación curricular integrada</strong><p>Consignas breves, vocabulario visible, instrucciones por pasos y retroalimentación inmediata. Activa “Modo apoyo” para ampliar texto y reducir información secundaria.</p></div></div>
+        </section>
+
+        <section class="view lab-view" id="view-benedict" data-title="Laboratorio de Benedict">
+          <div class="lab-header"><div><span class="molecule-label carb-text">LAB 01 · CARBOHIDRATOS</span><h2>Prueba de Benedict</h2><p>Configura el ensayo y observa cómo el calor revela azúcares reductores.</p></div><div class="formula-chip">Reactivo azul + calor → cambio de color</div></div>
+          <div class="p-rail" aria-label="Etapas P1 a P5"><span class="done">P1 <b>Observa</b></span><span class="current">P2 <b>Predice</b></span><span>P3 <b>Experimenta</b></span><span>P4 <b>Interpreta</b></span><span>P5 <b>Concluye</b></span></div>
+          <div class="lab-workspace">
+          <div class="simulator" data-lab="benedict">
+            <div class="control-panel">
+              <div class="panel-title"><span>CONFIGURACIÓN</span><button class="reset-lab" data-reset="benedict">Restablecer</button></div>
+              <label>Muestra<select id="benedict-sample"><option value="glucose">Solución de glucosa</option><option value="apple">Jugo de manzana</option><option value="milk">Leche</option><option value="starch">Solución de almidón</option><option value="water">Agua</option><option value="unknown">Muestra X del reto</option></select></label>
+              <label>Concentración <output id="benedict-concentration-out">60 %</output><input id="benedict-concentration" type="range" min="10" max="100" value="60"></label>
+              <label>Temperatura <output id="benedict-temp-out">80 °C</output><input id="benedict-temp" type="range" min="20" max="100" value="80"></label>
+              <label>Calentamiento <output id="benedict-time-out">4 min</output><input id="benedict-time" type="range" min="0" max="8" value="4"></label>
+              <div class="prediction"><strong>P2 · Tu predicción</strong><p>¿Habrá azúcares reductores?</p><div><button class="choice-chip" data-predict="yes">Sí</button><button class="choice-chip" data-predict="no">No</button><button class="choice-chip" data-predict="unsure">No estoy seguro</button></div></div>
+              <div class="procedure-guide" data-procedure="benedict"><strong>P3 · Protocolo de laboratorio</strong><p>Realiza las acciones en orden.</p><div><button data-step="0" disabled><span>1</span>Pipetear muestra</button><button data-step="1" disabled><span>2</span>Añadir Benedict</button><button data-step="2" disabled><span>3</span>Baño caliente</button></div></div>
+              <button class="run-button" data-run="benedict" disabled>Observar resultado</button>
+            </div>
+            <div class="experiment-panel">
+              <div class="experiment-meta"><span>VISTA DEL TUBO</span><span id="benedict-state">Sin ejecutar</span></div>
+              <div class="tube-stage"><div class="control-reference negative-ref"><i></i><span>Control −<small>agua</small></span></div><div class="heat-lines" aria-hidden="true">≋ ≋ ≋</div><div class="test-tube"><div class="tube-liquid" id="benedict-liquid"></div><div class="tube-gloss"></div></div><div class="bubbles" aria-hidden="true"><i></i><i></i><i></i></div><div class="control-reference positive-ref"><i></i><span>Control +<small>glucosa</small></span></div></div>
+              <div class="color-scale" aria-label="Escala de resultados de Benedict"><span style="--c:#2487e8">Negativo</span><span style="--c:#62bf64">Bajo</span><span style="--c:#e7cf42">Medio</span><span style="--c:#ef8a2f">Alto</span><span style="--c:#c9482f">Muy alto</span></div>
+              <div class="signal-meter"><span>Señal cualitativa</span><div><i id="benedict-signal"></i></div><output id="benedict-signal-out">Sin lectura</output></div>
+              <div class="result-box" id="benedict-result" aria-live="polite"><span>P4 · RESULTADO</span><h3>Configura y ejecuta el ensayo</h3><p>La interpretación aparecerá aquí.</p></div>
+            </div>
+          </div>
+          <section class="lab-notebook"><div class="notebook-head"><div><span class="section-kicker">BITÁCORA COMPARATIVA</span><h3>Resultados de Benedict</h3></div><span>Ensaya varias muestras con las mismas condiciones.</span></div><div class="notebook-table"><table><thead><tr><th>#</th><th>Muestra</th><th>Condiciones</th><th>Evidencia</th><th>Conclusión</th></tr></thead><tbody id="benedict-log"><tr class="empty-row"><td colspan="5">Aún no hay ensayos registrados.</td></tr></tbody></table></div></section>
+          </div>
+          <div class="lab-fact"><strong>¿Por qué calentar?</strong><p>La reacción de Benedict necesita energía térmica. Con poca temperatura o tiempo, un azúcar puede dar un resultado débil o falso negativo.</p></div>
+        </section>
+
+        <section class="view lab-view" id="view-sudan" data-title="Laboratorio de Sudan III">
+          <div class="lab-header"><div><span class="molecule-label lipid-text">LAB 02 · LÍPIDOS</span><h2>Prueba de Sudan III</h2><p>Busca una capa teñida de rojo: el colorante se concentra donde hay grasa.</p></div><div class="formula-chip">Muestra + Sudan III → capa rojiza</div></div>
+          <div class="p-rail" aria-label="Etapas P1 a P5"><span class="done">P1 <b>Observa</b></span><span class="current">P2 <b>Predice</b></span><span>P3 <b>Experimenta</b></span><span>P4 <b>Interpreta</b></span><span>P5 <b>Concluye</b></span></div>
+          <div class="lab-workspace">
+          <div class="simulator" data-lab="sudan">
+            <div class="control-panel">
+              <div class="panel-title"><span>CONFIGURACIÓN</span><button class="reset-lab" data-reset="sudan">Restablecer</button></div>
+              <label>Muestra<select id="sudan-sample"><option value="oil">Aceite vegetal</option><option value="avocado">Extracto de palta</option><option value="milk">Leche</option><option value="juice">Jugo de fruta</option><option value="water">Agua</option><option value="unknown">Muestra X del reto</option></select></label>
+              <label>Proporción de muestra <output id="sudan-concentration-out">60 %</output><input id="sudan-concentration" type="range" min="10" max="100" value="60"></label>
+              <label>Gotas de Sudan III <output id="sudan-reagent-out">5 gotas</output><input id="sudan-reagent" type="range" min="1" max="10" value="5"></label>
+              <label>Agitación <output id="sudan-time-out">5 s</output><input id="sudan-time" type="range" min="0" max="10" value="5"></label>
+              <div class="prediction"><strong>P2 · Tu predicción</strong><p>¿Se formará una capa roja?</p><div><button class="choice-chip" data-predict="yes">Sí</button><button class="choice-chip" data-predict="no">No</button><button class="choice-chip" data-predict="unsure">No estoy seguro</button></div></div>
+              <div class="procedure-guide" data-procedure="sudan"><strong>P3 · Protocolo de laboratorio</strong><p>Realiza las acciones en orden.</p><div><button data-step="0" disabled><span>1</span>Pipetear muestra</button><button data-step="1" disabled><span>2</span>Añadir Sudan III</button><button data-step="2" disabled><span>3</span>Agitar y reposar</button></div></div>
+              <button class="run-button" data-run="sudan" disabled>Observar resultado</button>
+            </div>
+            <div class="experiment-panel">
+              <div class="experiment-meta"><span>VISTA DEL TUBO</span><span id="sudan-state">Sin ejecutar</span></div>
+              <div class="tube-stage"><div class="control-reference negative-ref"><i></i><span>Control −<small>agua</small></span></div><div class="test-tube wide"><div class="tube-liquid" id="sudan-liquid"></div><div class="sudan-layer" id="sudan-layer"></div><div class="tube-gloss"></div></div><div class="droplet" aria-hidden="true">●</div><div class="control-reference positive-ref sudan-ref"><i></i><span>Control +<small>aceite</small></span></div></div>
+              <div class="two-state-scale"><span><i class="negative-swatch"></i>Sin capa = negativo</span><span><i class="positive-swatch"></i>Capa roja = positivo</span></div>
+              <div class="signal-meter"><span>Señal cualitativa</span><div><i id="sudan-signal"></i></div><output id="sudan-signal-out">Sin lectura</output></div>
+              <div class="result-box" id="sudan-result" aria-live="polite"><span>P4 · RESULTADO</span><h3>Configura y ejecuta el ensayo</h3><p>La interpretación aparecerá aquí.</p></div>
+            </div>
+          </div>
+          <section class="lab-notebook"><div class="notebook-head"><div><span class="section-kicker">BITÁCORA COMPARATIVA</span><h3>Resultados de Sudan III</h3></div><span>Compara la presencia o ausencia de una capa teñida.</span></div><div class="notebook-table"><table><thead><tr><th>#</th><th>Muestra</th><th>Condiciones</th><th>Evidencia</th><th>Conclusión</th></tr></thead><tbody id="sudan-log"><tr class="empty-row"><td colspan="5">Aún no hay ensayos registrados.</td></tr></tbody></table></div></section>
+          </div>
+          <div class="lab-fact"><strong>¿Qué ocurre?</strong><p>Sudan III es soluble en grasas y las tiñe. La intensidad orienta, pero no mide con exactitud la cantidad de lípidos.</p></div>
+        </section>
+
+        <section class="view lab-view" id="view-biuret" data-title="Laboratorio de Biuret">
+          <div class="lab-header"><div><span class="molecule-label protein-text">LAB 03 · PROTEÍNAS</span><h2>Prueba de Biuret</h2><p>Observa el paso de azul a violeta cuando hay enlaces peptídicos.</p></div><div class="formula-chip">Reactivo azul → violeta si hay proteína</div></div>
+          <div class="p-rail" aria-label="Etapas P1 a P5"><span class="done">P1 <b>Observa</b></span><span class="current">P2 <b>Predice</b></span><span>P3 <b>Experimenta</b></span><span>P4 <b>Interpreta</b></span><span>P5 <b>Concluye</b></span></div>
+          <div class="lab-workspace">
+          <div class="simulator" data-lab="biuret">
+            <div class="control-panel">
+              <div class="panel-title"><span>CONFIGURACIÓN</span><button class="reset-lab" data-reset="biuret">Restablecer</button></div>
+              <label>Muestra<select id="biuret-sample"><option value="egg">Clara de huevo</option><option value="milk">Leche</option><option value="beans">Extracto de legumbres</option><option value="oil">Aceite vegetal</option><option value="water">Agua</option><option value="unknown">Muestra X del reto</option></select></label>
+              <label>Proporción de muestra <output id="biuret-concentration-out">60 %</output><input id="biuret-concentration" type="range" min="10" max="100" value="60"></label>
+              <label>Gotas de Biuret <output id="biuret-reagent-out">5 gotas</output><input id="biuret-reagent" type="range" min="1" max="10" value="5"></label>
+              <label>Tiempo de espera <output id="biuret-time-out">3 min</output><input id="biuret-time" type="range" min="0" max="6" value="3"></label>
+              <div class="prediction"><strong>P2 · Tu predicción</strong><p>¿La muestra se volverá violeta?</p><div><button class="choice-chip" data-predict="yes">Sí</button><button class="choice-chip" data-predict="no">No</button><button class="choice-chip" data-predict="unsure">No estoy seguro</button></div></div>
+              <div class="procedure-guide" data-procedure="biuret"><strong>P3 · Protocolo de laboratorio</strong><p>Realiza las acciones en orden.</p><div><button data-step="0" disabled><span>1</span>Pipetear muestra</button><button data-step="1" disabled><span>2</span>Añadir Biuret</button><button data-step="2" disabled><span>3</span>Mezclar y esperar</button></div></div>
+              <button class="run-button" data-run="biuret" disabled>Observar resultado</button>
+            </div>
+            <div class="experiment-panel">
+              <div class="experiment-meta"><span>VISTA DEL TUBO</span><span id="biuret-state">Sin ejecutar</span></div>
+              <div class="tube-stage"><div class="control-reference negative-ref"><i></i><span>Control −<small>agua</small></span></div><div class="test-tube"><div class="tube-liquid" id="biuret-liquid"></div><div class="tube-gloss"></div></div><div class="bond-chain" aria-hidden="true">●—●—●</div><div class="control-reference positive-ref biuret-ref"><i></i><span>Control +<small>albúmina</small></span></div></div>
+              <div class="color-scale biuret-scale" aria-label="Escala de resultados de Biuret"><span style="--c:#2387d8">Negativo</span><span style="--c:#7f62c9">Débil</span><span style="--c:#7740b8">Positivo</span><span style="--c:#5f259f">Intenso</span></div>
+              <div class="signal-meter"><span>Señal cualitativa</span><div><i id="biuret-signal"></i></div><output id="biuret-signal-out">Sin lectura</output></div>
+              <div class="result-box" id="biuret-result" aria-live="polite"><span>P4 · RESULTADO</span><h3>Configura y ejecuta el ensayo</h3><p>La interpretación aparecerá aquí.</p></div>
+            </div>
+          </div>
+          <section class="lab-notebook"><div class="notebook-head"><div><span class="section-kicker">BITÁCORA COMPARATIVA</span><h3>Resultados de Biuret</h3></div><span>Compara la intensidad del violeta entre muestras.</span></div><div class="notebook-table"><table><thead><tr><th>#</th><th>Muestra</th><th>Condiciones</th><th>Evidencia</th><th>Conclusión</th></tr></thead><tbody id="biuret-log"><tr class="empty-row"><td colspan="5">Aún no hay ensayos registrados.</td></tr></tbody></table></div></section>
+          </div>
+          <div class="lab-fact"><strong>¿Qué detecta?</strong><p>Biuret reacciona con enlaces peptídicos. Por eso identifica proteínas, pero no aminoácidos aislados.</p></div>
+        </section>
+
+        <section class="view" id="view-evaluacion" data-title="Evaluación final">
+          <div id="quiz-start" class="quiz-start">
+            <div class="quiz-intro"><span class="section-kicker">EVALUACIÓN SUMATIVA</span><h2>Demuestra lo que descubriste</h2><p>Interpreta estructuras, resultados y decisiones del laboratorio. Son 10 preguntas de selección única, con 1 punto por respuesta correcta. Al entregar verás tu nota y una explicación de cada respuesta.</p><div class="quiz-rules"><span><b>10</b> preguntas</span><span><b>1</b> intento</span><span><b>10</b> puntos</span></div></div>
+            <div class="identity-panel"><span>ANTES DE COMENZAR</span><label for="student-name">Escribe tu nombre</label><input id="student-name" type="text" maxlength="80" autocomplete="name" placeholder="Nombre y apellido"><p>Solo pedimos tu nombre. En este prototipo, el intento se guarda en este dispositivo.</p><button class="primary-button" id="start-quiz">Comenzar evaluación</button><small id="name-error" role="alert"></small></div>
+          </div>
+          <form id="quiz-form" class="quiz-form" hidden>
+            <div class="quiz-progress-wrap"><div><span id="quiz-student"></span><strong id="quiz-counter">0 de 10 respondidas</strong></div><div class="quiz-progress"><i id="quiz-progress-bar"></i></div></div>
+            <div id="questions"></div>
+            <div class="submit-zone"><p>Revisa tus respuestas. Después de enviar no podrás cambiarlas.</p><button class="run-button" id="submit-quiz" type="submit" disabled>Entregar evaluación</button></div>
+          </form>
+          <div id="quiz-result" class="quiz-result" hidden aria-live="polite"></div>
+        </section>
+      </main>
+
+      <nav class="mobile-nav" aria-label="Navegación móvil">
+        <button data-view="inicio" class="active"><span>⌂</span>Inicio</button>
+        <button data-view="aprende"><span>◫</span>Aprende</button>
+        <button data-view="constructor"><span>◇</span>Construye</button>
+        <button data-view="evaluacion"><span>✓</span>Evaluación</button>
+      </nav>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js?v=sheets-1"></script>
+  <script src="evaluation-sync.js?v=sheets-1"></script>
+  <script src="assessment.js?v=assessment-4"></script>
+  <script src="learn.js?v=scope-3"></script>
+  <script src="app.js?v=scope-3"></script>
+</body>
+</html>

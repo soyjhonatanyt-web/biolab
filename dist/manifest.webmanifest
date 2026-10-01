@@ -1,0 +1,9 @@
+{
+  "name": "BioLab — Biomoléculas",
+  "short_name": "BioLab",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f4ee",
+  "theme_color": "#f5f4ee",
+  "icons": [{"src":"favicon.svg","sizes":"any","type":"image/svg+xml"}]
+}

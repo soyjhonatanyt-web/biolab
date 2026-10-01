@@ -1,0 +1,11 @@
+# Archivos locales: no publicar credenciales, datos ni herramientas temporales.
+.env
+.env.*
+!.env.example
+.openai/
+node_modules/
+work/
+outputs/
+*.log
+.DS_Store
+Thumbs.db
