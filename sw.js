@@ -1,5 +1,5 @@
-const CACHE = "biolab-offline-v12-pages-root";
-const ASSETS = ["./", "./index.html", "./styles.css?v=aprende-1", "./learn.css?v=aprende-1", "./editorial.css?v=scope-3", "./config.js?v=sheets-1", "./evaluation-sync.js?v=sheets-1", "./learn.js?v=scope-3", "./assessment.js?v=assessment-4", "./app.js?v=scope-4", "./favicon.svg", "./manifest.webmanifest"];
+const CACHE = "biolab-offline-v13-sheets-registration";
+const ASSETS = ["./", "./index.html", "./styles.css?v=aprende-1", "./learn.css?v=aprende-1", "./editorial.css?v=scope-3", "./config.js?v=sheets-2", "./evaluation-sync.js?v=sheets-2", "./learn.js?v=scope-3", "./assessment.js?v=assessment-4", "./app.js?v=registration-1", "./favicon.svg", "./manifest.webmanifest"];
 self.addEventListener("install", event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting())));
 self.addEventListener("activate", event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith("biolab-offline-") && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())));
 self.addEventListener("fetch", event => {

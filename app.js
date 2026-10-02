@@ -713,16 +713,22 @@
   }
 
   async function persistEvaluationRecord(record) {
+    if (activeRegistration || ["saved", "duplicate"].includes(record.remoteStatus)) return record.remoteStatus;
     const sync = window.BioLabEvaluationSync;
     record.attemptId ||= crypto.randomUUID?.() || `biolab-${Date.now()}-${Math.random().toString(36).slice(2)}`;
     activeRegistration = record.attemptId;
     record.remoteStatus = sync.endpoint() ? "sending" : "not-configured";
     localStorage.setItem(STORAGE.attempt, JSON.stringify(record));
     updateRemoteStatus(record);
-    record.remoteStatus = await sync.send(record);
-    activeRegistration = null;
-    localStorage.setItem(STORAGE.attempt, JSON.stringify(record));
-    updateRemoteStatus(record);
+    try {
+      record.remoteStatus = await sync.send(record);
+    } catch (_) {
+      record.remoteStatus = "error";
+    } finally {
+      activeRegistration = null;
+      localStorage.setItem(STORAGE.attempt, JSON.stringify(record));
+      updateRemoteStatus(record);
+    }
     return record.remoteStatus;
   }
 
@@ -731,7 +737,7 @@
     if (!panel) return;
     const state = window.BioLabEvaluationSync.status(record);
     panel.dataset.state = state.kind;
-    panel.innerHTML = `<p role="status">${escapeHtml(state.text)}</p>${state.retry ? '<button class="text-button" id="retry-registration" type="button">Reintentar solo el registro</button><small>No repite el examen ni cambia tu nota.</small>' : ""}`;
+    panel.innerHTML = `<p role="status">${escapeHtml(state.text)}</p>${state.retry ? '<button class="text-button" id="retry-registration" type="button">Intentar enviar nuevamente</button><small>Tu nota y tus respuestas siguen guardadas. No repite el examen ni cambia tu nota.</small>' : ""}`;
     $("#retry-registration")?.addEventListener("click", () => persistEvaluationRecord(record));
   }
 

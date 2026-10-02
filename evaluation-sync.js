@@ -3,38 +3,41 @@
 
   const endpoint = () => String(window.BioLabConfig?.GOOGLE_SCRIPT_URL || "").trim();
   const payload = record => ({
-    intentoId: record.attemptId,
     nombre: record.name,
     respuestas: record.answers.map(value => "ABCD"[value]),
-    correctas: record.score,
     nota: record.grade ?? Number((record.score / record.total * 10).toFixed(2)),
-    porcentaje: record.percentage ?? Math.round(record.score / record.total * 100),
-    fechaHora: record.submittedAt,
-    zonaHoraria: record.timeZone || Intl.DateTimeFormat().resolvedOptions().timeZone,
-    versionEvaluacion: record.assessmentVersion || "anterior"
+    porcentaje: record.percentage ?? Math.round(record.score / record.total * 100)
   });
 
   async function send(record) {
     if (!endpoint()) return "not-configured";
     if (!navigator.onLine) return "offline";
+    // Preserve the original question order, including for a manual retry.
+    // Never submit an incomplete or incompatible historical attempt.
+    if (record.total !== 10 || !Array.isArray(record.answers) || record.answers.length !== 10 ||
+        !record.answers.every(value => Number.isInteger(value) && value >= 0 && value <= 3) ||
+        typeof record.name !== "string" || !record.name.trim()) return "error";
+    const data = payload(record);
+    if (!Number.isFinite(data.nota) || data.nota < 0 || data.nota > 10 ||
+        !Number.isFinite(data.porcentaje) || data.porcentaje < 0 || data.porcentaje > 100) return "error";
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
     try {
-      // A simple form POST avoids preflight. Apps Script returns an opaque
-      // cross-origin response in this mode: it cannot confirm a saved row.
+      // The body is raw JSON. A safelisted text/plain content type avoids
+      // preflight; CORS keeps the redirected Apps Script reply readable.
       const response = await fetch(endpoint(), {
         method: "POST",
-        mode: "no-cors",
+        mode: "cors",
+        credentials: "omit",
         redirect: "follow",
+        headers: { "Content-Type": "text/plain;charset=UTF-8" },
         signal: controller.signal,
-        body: new URLSearchParams({ payload: JSON.stringify(payload(record)) })
+        body: JSON.stringify(data)
       });
-      if (response.type === "opaque") return "sent";
-      // A same-origin test endpoint can provide an explicit confirmation.
       if (!response.ok) return "error";
       const reply = await response.json();
-      if (reply.ok && reply.intentoId === record.attemptId) return "saved";
-      return reply.status === "duplicate" ? "duplicate" : "error";
+      if (reply?.duplicado === true) return "duplicate";
+      return reply?.ok === true ? "saved" : "error";
     } catch (_) {
       // The local grade is never lost or blocked by a remote failure.
       return "error";
@@ -48,11 +51,11 @@
     const kind = record.remoteStatus || "pending";
     const messages = {
       sending: "Enviando el resultado. Tu nota ya está disponible.",
-      saved: "Resultado registrado en Google Sheets.",
-      sent: "Solicitud de registro enviada; confirmación pendiente. El docente puede comprobarla en Google Sheets.",
-      offline: "Sin conexión: el resultado está guardado aquí, pero el registro remoto está pendiente.",
-      error: "No se pudo confirmar el envío. Tu nota sigue guardada en este navegador.",
-      duplicate: "Ya existe un resultado con este nombre en la hoja. No se añadió otro registro.",
+      saved: "Evaluación registrada correctamente.",
+      sent: "Tu nota está guardada aquí. El registro remoto está pendiente de confirmación.",
+      offline: "No se pudo registrar el resultado.",
+      error: "No se pudo registrar el resultado.",
+      duplicate: "Ya existe una evaluación registrada con este nombre.",
       pending: "Tu nota está guardada aquí. El registro remoto está pendiente.",
       "not-configured": "La conexión ya está configurada. Puedes enviar este resultado sin repetir el examen."
     };
